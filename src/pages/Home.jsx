@@ -88,21 +88,21 @@ const featuredItems = [
     id: 1,
     name: { fi: 'Grilled Chicken Sub', en: 'Grilled Chicken Sub' },
     desc: { fi: 'Mehevä grillattu kana, tuoreet vihannekset ja salaattikastike.', en: 'Juicy grilled chicken, fresh veggies, and house dressing.' },
-    image: `\${import.meta.env.BASE_URL}images/grilled-chicken-sub.png`,
+    image: `${import.meta.env.BASE_URL}images/grilled-chicken-sub.png`,
     price: '9.90',
   },
   {
     id: 2,
     name: { fi: 'Falafel Salaatti', en: 'Falafel Salad' },
     desc: { fi: 'Raikas salaatti rapeilla falafelleilla ja tuoreilla kasviksilla.', en: 'Crispy falafel on a bed of fresh greens and garden vegetables.' },
-    image: `\${import.meta.env.BASE_URL}images/falafel-salad.png`,
+    image: `${import.meta.env.BASE_URL}images/falafel-salad.png`,
     price: '10.50',
   },
   {
     id: 3,
     name: { fi: 'Smoothie Bowl', en: 'Smoothie Bowl' },
     desc: { fi: 'Vitamiineilla ladattu smoothie tuoreista hedelmistä ja marjoista.', en: 'Vitamin-packed smoothie made from fresh fruits and berries.' },
-    image: `\${import.meta.env.BASE_URL}images/fresh-fruit-smoothies.png`,
+    image: `${import.meta.env.BASE_URL}images/fresh-fruit-smoothies.png`,
     price: '7.50',
   },
 ];
@@ -255,7 +255,7 @@ export default function Home({ lang }) {
           <div className="hero-visual" aria-hidden="true">
             <div className="hero-img-stack">
               <m.img 
-                src={`\${import.meta.env.BASE_URL}images/grilled-chicken-sub.png`} 
+                src={`${import.meta.env.BASE_URL}images/grilled-chicken-sub.png`} 
                 alt="Grilled Chicken Sub" 
                 className="hero-img hero-img-main" 
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -263,7 +263,7 @@ export default function Home({ lang }) {
                 transition={{ duration: 0.8, delay: 0.2 }}
               />
               <m.img 
-                src={`\${import.meta.env.BASE_URL}images/fresh-salad-bowl.jpg`} 
+                src={`${import.meta.env.BASE_URL}images/fresh-salad-bowl.jpg`} 
                 alt="Salad Bowl" 
                 className="hero-img hero-img-top" 
                 initial={{ opacity: 0, scale: 0 }}
@@ -353,7 +353,7 @@ export default function Home({ lang }) {
             'restaurant-post-5.jpg', 'special-offer.jpg', 'restaurant-poster-1.jpg', 'restaurant-poster-2.jpg',
           ].map((img, i) => (
             <div key={i} className="gallery-item">
-              <img src={`\${import.meta.env.BASE_URL}images/${img}`} alt="" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL}images/${img}`} alt="" loading="lazy" />
             </div>
           ))}
         </div>

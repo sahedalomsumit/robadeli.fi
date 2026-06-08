@@ -1,18 +1,23 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import vitePluginWebpAndPath from 'vite-plugin-webp-and-path'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
+import VitePluginWebpAndPath from 'vite-plugin-webp-and-path'
 
 // https://vite.dev/config/
-export default defineConfig({
-  base: '/robadeli.fi/', // Required for GitHub Pages
+export default defineConfig(({ command }) => ({
+  base: command === 'serve' ? '/' : '/robadeli.fi/', // '/' for dev, '/robadeli.fi/' for GitHub Pages
   plugins: [
     react(),
-    vitePluginWebpAndPath(),
     ViteImageOptimizer({
       webp: {
         quality: 80,
       },
+    }),
+    VitePluginWebpAndPath({
+      targetDir: './dist/',
+      imgExtensions: 'jpg,jpeg,png',
+      textExtensions: 'html,css,js',
+      quality: 80,
     }),
   ],
   server: {
@@ -36,4 +41,4 @@ export default defineConfig({
       },
     },
   },
-})
+}));

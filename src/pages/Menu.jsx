@@ -48,7 +48,7 @@ const menuItems = [
       en: 'Juicy grilled chicken, lettuce, tomato, cucumber, peppers, and house sauce.'
     },
     price: '9.90',
-    image: `\${import.meta.env.BASE_URL}images/grilled-chicken-sub.png`,
+    image: `${import.meta.env.BASE_URL}images/grilled-chicken-sub.png`,
     tag: 'popular',
   },
   {
@@ -60,7 +60,7 @@ const menuItems = [
       en: 'American classic: thin-sliced beef, caramelised onions, and melted cheese.'
     },
     price: '11.50',
-    image: `\${import.meta.env.BASE_URL}images/philly-cheese-steak.png`,
+    image: `${import.meta.env.BASE_URL}images/philly-cheese-steak.png`,
     tag: 'popular',
   },
   {
@@ -72,7 +72,7 @@ const menuItems = [
       en: 'Italian salami, provolone, olives, pepperoncini, and a zesty vinaigrette dressing.'
     },
     price: '10.50',
-    image: `\${import.meta.env.BASE_URL}images/ultimate-italian-sub.png`,
+    image: `${import.meta.env.BASE_URL}images/ultimate-italian-sub.png`,
   },
   {
     id: 4,
@@ -83,7 +83,7 @@ const menuItems = [
       en: 'Fresh salmon, cream cheese, cucumber, and capers. A taste of the sea!'
     },
     price: '12.90',
-    image: `\${import.meta.env.BASE_URL}images/salmon-sub.png`,
+    image: `${import.meta.env.BASE_URL}images/salmon-sub.png`,
     tag: 'new',
   },
   {
@@ -95,7 +95,7 @@ const menuItems = [
       en: 'Slow-cooked beef brisket, coleslaw, and BBQ sauce. Rich and juicy.'
     },
     price: '13.50',
-    image: `\${import.meta.env.BASE_URL}images/beef-brisket-sub.png`,
+    image: `${import.meta.env.BASE_URL}images/beef-brisket-sub.png`,
   },
   {
     id: 6,
@@ -106,7 +106,7 @@ const menuItems = [
       en: 'Grilled halloumi, roasted peppers, pesto, and fresh herbs. A vegetarian favourite!'
     },
     price: '10.90',
-    image: `\${import.meta.env.BASE_URL}images/halloumi-sub.png`,
+    image: `${import.meta.env.BASE_URL}images/halloumi-sub.png`,
     tag: 'vegan',
   },
   {
@@ -118,7 +118,7 @@ const menuItems = [
       en: 'Multiple melted cheeses, fresh veggies, and Dijon mustard. Cheese lovers rejoice!'
     },
     price: '9.50',
-    image: `\${import.meta.env.BASE_URL}images/cheese-melt-sub.png`,
+    image: `${import.meta.env.BASE_URL}images/cheese-melt-sub.png`,
   },
   // Salads
   {
@@ -130,19 +130,19 @@ const menuItems = [
       en: 'Fresh greens with crispy falafel, chickpeas, peppers, and tahini dressing.'
     },
     price: '10.50',
-    image: `\${import.meta.env.BASE_URL}images/falafel-salad.png`,
+    image: `${import.meta.env.BASE_URL}images/falafel-salad.png`,
     tag: 'vegan',
   },
   {
     id: 9,
     category: 'salads',
-    name: { fi: 'Salaattikulho', en: 'Salad Bowl' },
+    name: { fi: 'Salaattikulho', en: 'Salaattikulho' },
     desc: {
       fi: 'Täyteläinen ja ravitseva kulho salaateista, quinoasta ja sesongin kasviksista.',
       en: 'A hearty, nourishing bowl of greens, quinoa, and seasonal vegetables.'
     },
     price: '11.90',
-    image: `\${import.meta.env.BASE_URL}images/fresh-salad-bowl.jpg`,
+    image: `${import.meta.env.BASE_URL}images/fresh-salad-bowl.jpg`,
     tag: 'vegan',
   },
   // Smoothies
@@ -155,7 +155,7 @@ const menuItems = [
       en: 'Vitamin-packed fresh fruit and berry smoothie. Ask for your favourite blend!'
     },
     price: '7.50',
-    image: `\${import.meta.env.BASE_URL}images/fresh-fruit-smoothies.png`,
+    image: `${import.meta.env.BASE_URL}images/fresh-fruit-smoothies.png`,
     tag: 'vegan',
   },
   // Wraps
@@ -168,7 +168,7 @@ const menuItems = [
       en: 'Fresh veggie wrap filled with crunchy vegetables, hummus, and feta cheese.'
     },
     price: '8.90',
-    image: `\${import.meta.env.BASE_URL}images/veggie-wrap.png`,
+    image: `${import.meta.env.BASE_URL}images/veggie-wrap.png`,
     tag: 'vegan',
   },
   {
@@ -180,7 +180,7 @@ const menuItems = [
       en: 'Grilled chicken, lettuce, tomato, and house sauce — wrapped up just right.'
     },
     price: '9.90',
-    image: `\${import.meta.env.BASE_URL}images/chicken-wrap.png`,
+    image: `${import.meta.env.BASE_URL}images/chicken-wrap.png`,
   },
   // Combos
   {
@@ -192,7 +192,7 @@ const menuItems = [
       en: 'Your choice of sub + drink + side. Best value for money!'
     },
     price: '13.90',
-    image: `\${import.meta.env.BASE_URL}images/combo-meal.jpg`,
+    image: `${import.meta.env.BASE_URL}images/combo-meal.jpg`,
     tag: 'popular',
   },
 ];
@@ -237,11 +237,11 @@ export default function Menu({ lang }) {
       {/* ====== HERO ====== */}
       <m.section {...fadeInUp} className="menu-hero" aria-label="Menu hero" id="menu-hero">
         <div className="menu-hero-bg">
-          <img src={`\${import.meta.env.BASE_URL}images/italian-sub-sandwich.png`} alt="" aria-hidden="true" />
+          <img src={`${import.meta.env.BASE_URL}images/italian-sub-sandwich.png`} alt="" aria-hidden="true" />
           <div className="menu-hero-overlay"></div>
         </div>
         <div className="container menu-hero-content">
-          <img src={`\${import.meta.env.BASE_URL}images/robadeli-logo.png`} alt="Roba Deli" className="menu-hero-logo" />
+          <img src={`${import.meta.env.BASE_URL}images/robadeli-logo.png`} alt="Roba Deli" className="menu-hero-logo" />
           <h1 className="menu-hero-title">{t.heroTitle}</h1>
           <p className="menu-hero-sub">{t.heroSub}</p>
         </div>
@@ -337,7 +337,7 @@ export default function Menu({ lang }) {
             <span className="section-label">{lang === 'fi' ? 'Virallinen menu' : 'Official Menu'}</span>
             <h2 className="section-title">{lang === 'fi' ? 'Printtimenumme' : 'Our Printed Menu'}</h2>
             <div className="physical-menu-grid">
-              {[`\${import.meta.env.BASE_URL}images/robadeli-menu-page-1.jpg`, `\${import.meta.env.BASE_URL}images/robadeli-menu-page-2.jpg`, `\${import.meta.env.BASE_URL}images/robadeli-menu-page-3.jpg`].map((src, idx) => (
+              {[`${import.meta.env.BASE_URL}images/robadeli-menu-page-1.jpg`, `${import.meta.env.BASE_URL}images/robadeli-menu-page-2.jpg`, `${import.meta.env.BASE_URL}images/robadeli-menu-page-3.jpg`].map((src, idx) => (
                 <img
                   key={idx}
                   src={src}
