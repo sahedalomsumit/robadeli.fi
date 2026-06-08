@@ -1,5 +1,5 @@
 import { useState, useEffect, Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { LazyMotion, domAnimation } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <LazyMotion features={domAnimation}>
-      <BrowserRouter>
+      <HashRouter>
         <ScrollToTop />
         <a href="#main-content" className="skip-to-content">
           {lang === 'fi' ? 'Siirry pääsisältöön' : 'Skip to main content'}
@@ -31,7 +31,7 @@ function App() {
           </Routes>
         </Suspense>
         <Footer lang={lang} />
-      </BrowserRouter>
+      </HashRouter>
     </LazyMotion>
   );
 }

@@ -5,6 +5,7 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/robadeli.fi/', // Required for GitHub Pages
   plugins: [
     react(),
     vitePluginWebpAndPath(),
