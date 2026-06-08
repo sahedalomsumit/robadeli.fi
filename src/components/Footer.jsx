@@ -46,7 +46,7 @@ const Footer = memo(function Footer({ lang }) {
             {/* Brand */}
             <div className="footer-brand">
               <div className="footer-logo">
-                <img src="/images/robadeli-logo.png" alt="Roba Deli" width="52" height="52" />
+                <img src={`\${import.meta.env.BASE_URL}images/robadeli-logo.png`} alt="Roba Deli" width="52" height="52" />
                 <span className="footer-logo-text">Roba<span>Deli</span></span>
               </div>
               <p className="footer-tagline">{t.tagline}</p>
