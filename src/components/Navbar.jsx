@@ -94,7 +94,7 @@ export default function Navbar({ lang }) {
           </nav>
 
           {/* Right side */}
-          <div className="navbar-right hidden-mobile">
+          <div className="navbar-right">
             {/* Language Switcher */}
             <div className="lang-switcher" role="group" aria-label="Kielivalinta">
               <button

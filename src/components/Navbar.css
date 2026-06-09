@@ -205,6 +205,10 @@
 @media (max-width: 900px) {
   .navbar-nav { display: none; }
   .hidden-mobile { display: none; }
+  .navbar-right {
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
   .hamburger { display: flex; }
 }
 
