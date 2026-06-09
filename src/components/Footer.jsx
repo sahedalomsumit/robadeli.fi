@@ -87,7 +87,7 @@ const Footer = memo(function Footer({ lang }) {
             </div>
 
             {/* Quick Links */}
-            <div className="footer-col">
+            <div className="footer-col footer-col-quick-links">
               <h3 className="footer-col-title">{t.quickLinks}</h3>
               <ul className="footer-links">
                 <li><Link to={lang === 'en' ? '/en' : '/'} className="footer-link" onClick={() => window.scrollTo(0,0)}>{t.home}</Link></li>
