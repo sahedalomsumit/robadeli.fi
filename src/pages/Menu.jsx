@@ -229,7 +229,7 @@ export default function Menu({ lang }) {
 
   return (
     <main className="menu-page page-enter" id="main-content">
-      <Helmet>
+      <Helmet htmlAttributes={{ lang: lang }}>
         <title>{lang === 'fi' ? 'Menu | Roba Deli' : 'Menu | Roba Deli'}</title>
         <meta name="description" content={lang === 'fi' ? 'Katso Roba Delin herkullinen menu. Kaikki valmistetaan tuoreista aineksista.' : 'Check out our delicious menu at Roba Deli. Everything is made fresh to order.'} />
       </Helmet>

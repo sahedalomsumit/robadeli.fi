@@ -175,7 +175,7 @@ export default function Home({ lang }) {
 
   return (
     <main className="home-page page-enter" id="main-content">
-      <Helmet>
+      <Helmet htmlAttributes={{ lang: lang }}>
         <title>{lang === 'fi' ? 'Roba Deli | Tuoreita Submaariineja, Salaatteja ja Smoothieita' : 'Roba Deli | Fresh Subs, Salads and Smoothies'}</title>
         <meta name="description" content={lang === 'fi' ? 'Nauti Iso Robertinkadulla käsintehdyistä subeista, raikkaista salaateista ja pirteistä smoothieista.' : 'Enjoy handcrafted subs, fresh salads, and energizing smoothies on Iso Robertinkatu in Helsinki.'} />
       </Helmet>
@@ -219,7 +219,7 @@ export default function Home({ lang }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <Link to="/menu" className="btn btn-primary btn-lg hero-primary-btn" id="hero-menu-btn">
+              <Link to={lang === 'en' ? '/en/menu' : '/menu'} className="btn btn-primary btn-lg hero-primary-btn" id="hero-menu-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
                   <path d="M7 2v20"/>
@@ -397,7 +397,7 @@ export default function Home({ lang }) {
           </div>
 
           <div className="specials-cta">
-            <Link to="/menu" className="btn btn-cta btn-lg" id="specials-menu-btn">
+            <Link to={lang === 'en' ? '/en/menu' : '/menu'} className="btn btn-cta btn-lg" id="specials-menu-btn">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
                 <rect width="6" height="4" x="9" y="3" rx="1"/>
@@ -565,7 +565,7 @@ export default function Home({ lang }) {
               <p>{t.ctaSub}</p>
             </div>
             <div className="cta-actions">
-              <Link to="/menu" className="btn btn-primary btn-lg" id="cta-menu-btn">
+              <Link to={lang === 'en' ? '/en/menu' : '/menu'} className="btn btn-primary btn-lg" id="cta-menu-btn">
                 {t.ctaBtn}
               </Link>
               <a href="tel:+358503797490" className="btn btn-secondary btn-lg" id="cta-phone-btn">

@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const translations = {
@@ -89,8 +90,8 @@ const Footer = memo(function Footer({ lang }) {
             <div className="footer-col">
               <h3 className="footer-col-title">{t.quickLinks}</h3>
               <ul className="footer-links">
-                <li><a href="/" className="footer-link">{t.home}</a></li>
-                <li><a href="/menu" className="footer-link">{t.menu}</a></li>
+                <li><Link to={lang === 'en' ? '/en' : '/'} className="footer-link" onClick={() => window.scrollTo(0,0)}>{t.home}</Link></li>
+                <li><Link to={lang === 'en' ? '/en/menu' : '/menu'} className="footer-link" onClick={() => window.scrollTo(0,0)}>{t.menu}</Link></li>
                 <li>
                   <a
                     href="https://maps.app.goo.gl/RUCXA96bhSmibGVN9"

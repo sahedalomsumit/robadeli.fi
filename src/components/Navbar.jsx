@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { m, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import './Navbar.css';
@@ -21,11 +21,29 @@ const translations = {
   }
 };
 
-export default function Navbar({ lang, setLang }) {
+export default function Navbar({ lang }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const t = translations[lang];
+
+  const handleLangChange = (targetLang) => {
+    if (lang === targetLang) return;
+    
+    const currentPath = location.pathname;
+    const isCurrentlyEnglish = currentPath.startsWith('/en/') || currentPath === '/en';
+    
+    let newPath = currentPath;
+    if (targetLang === 'en' && !isCurrentlyEnglish) {
+      newPath = currentPath === '/' ? '/en' : `/en${currentPath}`;
+    } else if (targetLang === 'fi' && isCurrentlyEnglish) {
+      const parsedPath = currentPath.replace(/^\/en/, '');
+      newPath = parsedPath === '' ? '/' : parsedPath;
+    }
+    
+    navigate(newPath);
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -50,7 +68,7 @@ export default function Navbar({ lang, setLang }) {
       <div className="container relative">
         <div className="navbar-inner">
           {/* Logo */}
-          <Link to="/" className="navbar-logo" aria-label="Roba Deli - Etusivu" onClick={() => window.scrollTo(0,0)}>
+          <Link to={lang === 'en' ? '/en' : '/'} className="navbar-logo" aria-label="Roba Deli - Etusivu" onClick={() => window.scrollTo(0,0)}>
             <img
               src={`${import.meta.env.BASE_URL}images/robadeli-logo-horizontal.png`}
               alt="Roba Deli logo"
@@ -60,10 +78,10 @@ export default function Navbar({ lang, setLang }) {
 
           {/* Desktop Nav */}
           <nav className="navbar-nav" aria-label="Päänavigaatio">
-            <Link to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`} onClick={() => window.scrollTo(0,0)}>
+            <Link to={lang === 'en' ? '/en' : '/'} className={`nav-link ${isActive(lang === 'en' ? '/en' : '/') ? 'active' : ''}`} onClick={() => window.scrollTo(0,0)}>
               {t.home}
             </Link>
-            <Link to="/menu" className={`nav-link ${isActive('/menu') ? 'active' : ''}`} onClick={() => window.scrollTo(0,0)}>
+            <Link to={lang === 'en' ? '/en/menu' : '/menu'} className={`nav-link ${isActive(lang === 'en' ? '/en/menu' : '/menu') ? 'active' : ''}`} onClick={() => window.scrollTo(0,0)}>
               {t.menu}
             </Link>
             <a
@@ -81,12 +99,12 @@ export default function Navbar({ lang, setLang }) {
             <div className="lang-switcher" role="group" aria-label="Kielivalinta">
               <button
                 className={`lang-btn ${lang === 'fi' ? 'active' : ''}`}
-                onClick={() => setLang('fi')}
+                onClick={() => handleLangChange('fi')}
                 aria-pressed={lang === 'fi'}
               >FI</button>
               <button
                 className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
-                onClick={() => setLang('en')}
+                onClick={() => handleLangChange('en')}
                 aria-pressed={lang === 'en'}
               >EN</button>
             </div>
@@ -114,10 +132,10 @@ export default function Navbar({ lang, setLang }) {
             >
               <div className="mobile-menu-inner">
                 <nav aria-label="Mobiilinavigaatio" className="mobile-nav-list">
-                  <Link to="/" className={`mobile-nav-link ${isActive('/') ? 'active' : ''}`} onClick={() => { setMenuOpen(false); window.scrollTo(0,0); }}>
+                  <Link to={lang === 'en' ? '/en' : '/'} className={`mobile-nav-link ${isActive(lang === 'en' ? '/en' : '/') ? 'active' : ''}`} onClick={() => { setMenuOpen(false); window.scrollTo(0,0); }}>
                     {t.home}
                   </Link>
-                  <Link to="/menu" className={`mobile-nav-link ${isActive('/menu') ? 'active' : ''}`} onClick={() => { setMenuOpen(false); window.scrollTo(0,0); }}>
+                  <Link to={lang === 'en' ? '/en/menu' : '/menu'} className={`mobile-nav-link ${isActive(lang === 'en' ? '/en/menu' : '/menu') ? 'active' : ''}`} onClick={() => { setMenuOpen(false); window.scrollTo(0,0); }}>
                     {t.menu}
                   </Link>
                   <a href="tel:+358503797490" className="mobile-nav-link">
@@ -130,11 +148,11 @@ export default function Navbar({ lang, setLang }) {
                 <div className="mobile-lang-switcher">
                   <button
                     className={`lang-btn ${lang === 'fi' ? 'active' : ''}`}
-                    onClick={() => setLang('fi')}
+                    onClick={() => handleLangChange('fi')}
                   >FI – Suomi</button>
                   <button
                     className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
-                    onClick={() => setLang('en')}
+                    onClick={() => handleLangChange('en')}
                   >EN – English</button>
                 </div>
               </div>
