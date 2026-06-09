@@ -5,7 +5,7 @@ import VitePluginWebpAndPath from 'vite-plugin-webp-and-path'
 
 // https://vite.dev/config/
 export default defineConfig(({ command }) => ({
-  base: command === 'serve' ? '/' : '/robadeli.fi/', // '/' for dev, '/robadeli.fi/' for GitHub Pages
+  base: '/',
   plugins: [
     react(),
     ViteImageOptimizer({
