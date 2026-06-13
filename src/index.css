@@ -243,7 +243,7 @@ p {
 }
 
 /* ============================================================
-   CARDS
+   CARDS & MENU CARDS
 ============================================================ */
 .card {
   background: var(--color-white);
@@ -256,6 +256,79 @@ p {
 .card:hover {
   box-shadow: var(--shadow-lg);
   transform: translateY(-4px);
+}
+
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+}
+
+.menu-card-img {
+  position: relative;
+  height: 333px;
+  overflow: hidden;
+}
+
+.menu-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.menu-card:hover .menu-card-img img {
+  transform: scale(1.05);
+}
+
+.menu-tag {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.04em;
+}
+
+.menu-card-body {
+  padding: var(--space-lg);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.menu-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.menu-item-name {
+  font-size: 1.0625rem;
+  color: var(--color-text);
+  flex: 1;
+  line-height: 1.3;
+}
+
+.menu-item-price {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.menu-item-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
 }
 
 /* ============================================================

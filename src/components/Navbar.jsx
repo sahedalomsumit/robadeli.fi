@@ -70,7 +70,7 @@ export default function Navbar({ lang }) {
           {/* Logo */}
           <Link to={lang === 'en' ? '/en' : '/'} className="navbar-logo" aria-label="Roba Deli - Etusivu" onClick={() => window.scrollTo(0,0)}>
             <img
-              src={`${import.meta.env.BASE_URL}images/robadeli-logo-horizontal.png`}
+              src={`${import.meta.env.BASE_URL}images/logo/robadeli-logo.png`}
               alt="Roba Deli logo"
               className="logo-img-hor"
             />

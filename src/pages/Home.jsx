@@ -1,5 +1,7 @@
+import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import { m } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import './Home.css';
 
@@ -26,6 +28,12 @@ const translations = {
     feat3Desc: 'Löydät meidät Iso Robertinkadulta, aivan Helsingin sydämestä. Tule käymään!',
     specialsTitle: 'Tällä hetkellä suosituimmat',
     specialsSub: 'Nämä ruoat ovat asiakkaidemme ehdottomia suosikkeja. Kokeile itse!',
+    offersTitle: 'Erikoistarjoukset',
+    offersSub: 'Katso huikeat tarjouksemme ja säästä!',
+    highlightsTitle: 'Suosikit & Tarjoukset',
+    highlightsSub: 'Löydä uudet suosikkisi ja hyödynnä parhaat tarjouksemme.',
+    tabSpecials: 'Suosituimmat',
+    tabOffers: 'Tarjoukset',
     seeMenu: 'Koko menu',
     reviewsTitle: 'Mitä asiakkaamme sanovat',
     reviewsSub: 'Aitoja kokemuksia aidoilta asiakkailta. Me olemme ylpeitä jokaisesta palautteesta.',
@@ -64,6 +72,12 @@ const translations = {
     feat3Desc: 'Find us on Iso Robertinkatu, right in the heart of Helsinki. Easy to reach, impossible to forget.',
     specialsTitle: 'Our Most Loved',
     specialsSub: 'These dishes are our customers\' absolute favourites. Come taste for yourself!',
+    offersTitle: 'Special Offers',
+    offersSub: 'Check out our amazing offers and save!',
+    highlightsTitle: 'Favourites & Offers',
+    highlightsSub: 'Find your new favourites and take advantage of our best deals.',
+    tabSpecials: 'Most Loved',
+    tabOffers: 'Special Offers',
     seeMenu: 'Full Menu',
     reviewsTitle: 'What Our Customers Say',
     reviewsSub: 'Real experiences from real people. We\'re proud of every piece of feedback.',
@@ -82,6 +96,12 @@ const translations = {
   }
 };
 
+const tagColors = {
+  popular: { bg: '#FEF3C7', text: '#92400E', label: { fi: 'Suosittu', en: 'Popular' } },
+  new:     { bg: '#DCFCE7', text: '#14532D', label: { fi: 'Uutuus',   en: 'New' } },
+  vegan:   { bg: '#F0FDF4', text: '#166534', label: { fi: 'Vegaani',  en: 'Vegan' } },
+};
+
 // Featured menu items on home page
 const featuredItems = [
   {
@@ -90,6 +110,7 @@ const featuredItems = [
     desc: { fi: 'Mehevä grillattu kana, tuoreet vihannekset ja salaattikastike.', en: 'Juicy grilled chicken, fresh veggies, and house dressing.' },
     image: `${import.meta.env.BASE_URL}images/grilled-chicken-sub.png`,
     price: '9.90',
+    tag: 'popular',
   },
   {
     id: 2,
@@ -97,6 +118,7 @@ const featuredItems = [
     desc: { fi: 'Raikas salaatti rapeilla falafelleilla ja tuoreilla kasviksilla.', en: 'Crispy falafel on a bed of fresh greens and garden vegetables.' },
     image: `${import.meta.env.BASE_URL}images/falafel-salad.png`,
     price: '10.50',
+    tag: 'vegan',
   },
   {
     id: 3,
@@ -104,6 +126,34 @@ const featuredItems = [
     desc: { fi: 'Vitamiineilla ladattu smoothie tuoreista hedelmistä ja marjoista.', en: 'Vitamin-packed smoothie made from fresh fruits and berries.' },
     image: `${import.meta.env.BASE_URL}images/fresh-fruit-smoothies.png`,
     price: '7.50',
+    tag: 'vegan',
+  },
+];
+
+// Offer items on home page
+const offerItems = [
+  {
+    id: 1,
+    name: { fi: 'Erikoistarjous', en: 'Special Offer' },
+    desc: { fi: 'Falafel Muhamara -salaatti TAI 15cm Grillattu Kana Sub.', en: 'Falafel Muhamara Salad OR 15cm Grilled Chicken Sub.' },
+    image: `${import.meta.env.BASE_URL}images/offer/offer.jpg`,
+    price: '6.99',
+    tag: 'popular',
+  },
+  {
+    id: 2,
+    name: { fi: 'Loaded Nachos', en: 'Loaded Nachos' },
+    desc: { fi: 'Kana tai Nauta.', en: 'Chicken or Beef.' },
+    image: `${import.meta.env.BASE_URL}images/offer/offer (1).jpeg`,
+    price: '7.50',
+    tag: 'new',
+  },
+  {
+    id: 3,
+    name: { fi: 'Pastrami Burger + Cola', en: 'Pastrami Burger + Cola' },
+    desc: { fi: 'Herkullinen Pastrami Burger ja Cola.', en: 'Delicious Pastrami Burger with Cola.' },
+    image: `${import.meta.env.BASE_URL}images/offer/offer (2).jpeg`,
+    price: '17.90',
   },
 ];
 
@@ -165,6 +215,32 @@ function StarRating({ rating }) {
 
 export default function Home({ lang }) {
   const t = translations[lang];
+  const [activeHighlightTab, setActiveHighlightTab] = useState('offers');
+  const [lightboxImage, setLightboxImage] = useState(null);
+
+  const galleryBaseImages = [
+    'restaurant-poster-1.jpg', 'restaurant-poster-2.jpg', 'restaurant-poster-3.jpg', 'restaurant-poster-4.jpg',
+    'restaurant-post-5.jpg'
+  ];
+  const uniqueGalleryImages = galleryBaseImages.map(img => `${import.meta.env.BASE_URL}images/${img}`);
+
+  const currentIdx = uniqueGalleryImages.indexOf(lightboxImage);
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    if (currentIdx !== -1) {
+      const nextIdx = (currentIdx + 1) % uniqueGalleryImages.length;
+      setLightboxImage(uniqueGalleryImages[nextIdx]);
+    }
+  };
+
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    if (currentIdx !== -1) {
+      const prevIdx = (currentIdx - 1 + uniqueGalleryImages.length) % uniqueGalleryImages.length;
+      setLightboxImage(uniqueGalleryImages[prevIdx]);
+    }
+  };
 
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
@@ -345,56 +421,152 @@ export default function Home({ lang }) {
 
       {/* ====== GALLERY STRIP ====== */}
       <m.section {...fadeInUp} className="gallery-strip section-pad-sm" aria-label="Ruokakuvat" id="gallery">
-        <div className="gallery-track" aria-hidden="true">
+        <div className="gallery-track" aria-hidden="true" style={{ animationPlayState: lightboxImage ? 'paused' : 'running' }}>
           {[
-            'restaurant-poster-1.jpg', 'restaurant-poster-2.jpg', 'restaurant-poster-3.jpg', 'restaurant-poster-4.jpg',
-            'restaurant-post-5.jpg', 'special-offer.jpg', 'restaurant-poster-1.jpg', 'restaurant-poster-2.jpg',
-            'restaurant-poster-1.jpg', 'restaurant-poster-2.jpg', 'restaurant-poster-3.jpg', 'restaurant-poster-4.jpg',
-            'restaurant-post-5.jpg', 'special-offer.jpg', 'restaurant-poster-1.jpg', 'restaurant-poster-2.jpg',
-          ].map((img, i) => (
-            <div key={i} className="gallery-item">
-              <img src={`${import.meta.env.BASE_URL}images/${img}`} alt="" loading="lazy" />
-            </div>
-          ))}
+            ...galleryBaseImages, ...galleryBaseImages, ...galleryBaseImages, ...galleryBaseImages
+          ].map((img, i) => {
+            const fullSrc = `${import.meta.env.BASE_URL}images/${img}`;
+            return (
+              <div key={i} className="gallery-item">
+                <img 
+                  src={fullSrc} 
+                  alt="" 
+                  loading="lazy" 
+                  onClick={() => setLightboxImage(fullSrc)}
+                  style={{ cursor: 'pointer' }}
+                />
+              </div>
+            );
+          })}
         </div>
       </m.section>
 
-      {/* ====== FEATURED MENU ====== */}
-      <m.section {...fadeInUp} className="specials-section section-pad" aria-labelledby="specials-title" id="specials">
+      {/* ====== HIGHLIGHTS (OFFERS & SPECIALS) ====== */}
+      <m.section {...fadeInUp} className="specials-section section-pad" aria-labelledby="highlights-title" id="highlights">
         <div className="container">
           <div className="section-header text-center">
-            <span className="section-label">{t.specialsTitle}</span>
-            <h2 id="specials-title" className="section-title">{t.specialsTitle}</h2>
-            <p className="section-subtitle" style={{ margin: '0 auto' }}>{t.specialsSub}</p>
+            <span className="section-label">{t.highlightsTitle}</span>
+            <h2 id="highlights-title" className="section-title">{t.highlightsTitle}</h2>
+            <p className="section-subtitle" style={{ margin: '0 auto' }}>{t.highlightsSub}</p>
           </div>
 
-          <div className="specials-grid">
-            {featuredItems.map((item, index) => (
-              <m.article 
-                key={item.id} 
-                className="special-card card" 
-                id={`special-item-${item.id}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="special-img-wrap">
-                  <img
-                    src={item.image}
-                    alt={item.name[lang]}
-                    className="special-img"
-                    loading="lazy"
-                  />
-                  <div className="special-price">€{item.price}</div>
-                </div>
-                <div className="special-body">
-                  <h3 className="special-name">{item.name[lang]}</h3>
-                  <p className="special-desc">{item.desc[lang]}</p>
-                </div>
-              </m.article>
-            ))}
+          <div className="home-tabs">
+            <button
+              className={`home-tab ${activeHighlightTab === 'offers' ? 'active' : ''}`}
+              onClick={() => setActiveHighlightTab('offers')}
+            >
+              {t.tabOffers}
+            </button>
+            <button
+              className={`home-tab ${activeHighlightTab === 'specials' ? 'active' : ''}`}
+              onClick={() => setActiveHighlightTab('specials')}
+            >
+              {t.tabSpecials}
+            </button>
           </div>
+
+          <AnimatePresence mode="wait">
+            {activeHighlightTab === 'specials' && (
+              <m.div
+                key="specials"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.3 }}
+                className="specials-grid"
+              >
+                {featuredItems.map((item, index) => (
+                  <m.article 
+                    key={item.id} 
+                    className="menu-card card" 
+                    id={`special-item-${item.id}`}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                  >
+                    <div className="menu-card-img">
+                      <img
+                        src={item.image}
+                        alt={item.name[lang]}
+                        loading="lazy"
+                        onClick={() => setLightboxImage(item.image)}
+                        style={{ cursor: 'pointer' }}
+                      />
+                      {item.tag && (
+                        <span
+                          className="menu-tag"
+                          style={{
+                            background: tagColors[item.tag].bg,
+                            color: tagColors[item.tag].text,
+                          }}
+                        >
+                          {tagColors[item.tag].label[lang]}
+                        </span>
+                      )}
+                    </div>
+                    <div className="menu-card-body">
+                      <div className="menu-card-top">
+                        <h2 className="menu-item-name">{item.name[lang]}</h2>
+                        <span className="menu-item-price">€{item.price}</span>
+                      </div>
+                      <p className="menu-item-desc">{item.desc[lang]}</p>
+                    </div>
+                  </m.article>
+                ))}
+              </m.div>
+            )}
+
+            {activeHighlightTab === 'offers' && (
+              <m.div
+                key="offers"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.3 }}
+                className="specials-grid"
+              >
+                {offerItems.map((item, index) => (
+                  <m.article 
+                    key={`offer-${item.id}`} 
+                    className="menu-card card" 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                  >
+                    <div className="menu-card-img">
+                      <img
+                        src={item.image}
+                        alt={item.name[lang]}
+                        loading="lazy"
+                        onClick={() => setLightboxImage(item.image)}
+                        style={{ cursor: 'pointer' }}
+                      />
+                      {item.tag && (
+                        <span
+                          className="menu-tag"
+                          style={{
+                            background: tagColors[item.tag].bg,
+                            color: tagColors[item.tag].text,
+                          }}
+                        >
+                          {tagColors[item.tag].label[lang]}
+                        </span>
+                      )}
+                    </div>
+                    <div className="menu-card-body">
+                      <div className="menu-card-top">
+                        <h2 className="menu-item-name">{item.name[lang]}</h2>
+                        <span className="menu-item-price">€{item.price}</span>
+                      </div>
+                      <p className="menu-item-desc">{item.desc[lang]}</p>
+                    </div>
+                  </m.article>
+                ))}
+              </m.div>
+            )}
+          </AnimatePresence>
 
           <div className="specials-cta">
             <Link to={lang === 'en' ? '/en/menu' : '/menu'} className="btn btn-cta btn-lg" id="specials-menu-btn">
@@ -578,6 +750,40 @@ export default function Home({ lang }) {
           </div>
         </div>
       </m.section>
+
+      {/* Lightbox */}
+      {createPortal(
+        <AnimatePresence>
+          {lightboxImage && (
+            <m.div
+              key="lightbox"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="lightbox-overlay"
+              onClick={() => setLightboxImage(null)}
+            >
+              <button className="lightbox-close" onClick={() => setLightboxImage(null)}>✕</button>
+              {currentIdx !== -1 && (
+                <>
+                  <button className="lightbox-prev" onClick={handlePrev}>&lsaquo;</button>
+                  <button className="lightbox-next" onClick={handleNext}>&rsaquo;</button>
+                </>
+              )}
+              <m.img
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.8 }}
+                src={lightboxImage}
+                alt="Lightbox"
+                className="lightbox-image"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </m.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
     </main>
   );

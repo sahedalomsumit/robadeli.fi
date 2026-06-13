@@ -19,6 +19,7 @@ const translations = {
     popular: 'Suosittu',
     new: 'Uutuus',
     vegan: 'Vegaani',
+    offersLabel: 'Tarjoukset',
   },
   en: {
     heroTitle: 'Our Menu',
@@ -34,6 +35,7 @@ const translations = {
     popular: 'Popular',
     new: 'New',
     vegan: 'Vegan',
+    offersLabel: 'Offers',
   }
 };
 
@@ -195,6 +197,57 @@ const menuItems = [
     image: `${import.meta.env.BASE_URL}images/combo-meal.jpg`,
     tag: 'popular',
   },
+  // Offers
+  {
+    id: 14,
+    category: 'offers',
+    name: { fi: 'Erikoistarjous', en: 'Special Offer' },
+    desc: { fi: 'Falafel Muhamara -salaatti TAI 15cm (Pieni) Grillattu Kana Sub.', en: 'Falafel Muhamara Salad OR 15cm (Small Size) Grilled Chicken Sub.' },
+    price: '6.99',
+    image: `${import.meta.env.BASE_URL}images/offer/offer.jpg`,
+    tag: 'popular',
+  },
+  {
+    id: 15,
+    category: 'offers',
+    name: { fi: 'Loaded Nachos', en: 'Loaded Nachos' },
+    desc: { fi: 'Kana tai Nauta.', en: 'Chicken or Beef.' },
+    price: '7.50',
+    image: `${import.meta.env.BASE_URL}images/offer/offer (1).jpeg`,
+    tag: 'new',
+  },
+  {
+    id: 16,
+    category: 'offers',
+    name: { fi: 'Pastrami Burger + Cola', en: 'Pastrami Burger + Cola' },
+    desc: { fi: 'Herkullinen Pastrami Burger ja Cola.', en: 'Delicious Pastrami Burger with Cola.' },
+    price: '17.90',
+    image: `${import.meta.env.BASE_URL}images/offer/offer (2).jpeg`,
+  },
+  {
+    id: 17,
+    category: 'offers',
+    name: { fi: 'Large Philly Cheesesteak + Coca-Cola', en: 'Large Philly Cheesesteak + Coca-Cola' },
+    desc: { fi: 'Iso Philly Cheesesteak ja Coca-Cola.', en: 'Large Philly Cheesesteak and Coca-Cola.' },
+    price: '14.90',
+    image: `${import.meta.env.BASE_URL}images/offer/offer (3).jpeg`,
+  },
+  {
+    id: 18,
+    category: 'offers',
+    name: { fi: 'Large Grilled Halloumi Sub + Coca-Cola', en: 'Large Grilled Halloumi Sub + Coca-Cola' },
+    desc: { fi: 'Iso grillattu Halloumi Sub ja Coca-Cola.', en: 'Large Grilled Halloumi Sub and Coca-Cola.' },
+    price: '13.90',
+    image: `${import.meta.env.BASE_URL}images/offer/offer (4).jpeg`,
+  },
+  {
+    id: 19,
+    category: 'offers',
+    name: { fi: 'Large Sourdough Ultimate Italian + Coca-Cola', en: 'Large Sourdough Ultimate Italian + Coca-Cola' },
+    desc: { fi: 'Iso hapanjuuri Ultimate Italian ja Coca-Cola.', en: 'Large Sourdough Ultimate Italian and Coca-Cola.' },
+    price: '14.90',
+    image: `${import.meta.env.BASE_URL}images/offer/offer (5).jpeg`,
+  },
 ];
 
 const categories = [
@@ -203,6 +256,7 @@ const categories = [
   { id: 'salads', fi: 'Salaatit', en: 'Salads' },
   { id: 'smoothies', fi: 'Smoothiet', en: 'Smoothies' },
   { id: 'wraps', fi: 'Wrapit', en: 'Wraps' },
+  { id: 'offers', fi: 'Tarjoukset', en: 'Offers' },
 ];
 
 const tagColors = {
@@ -215,6 +269,28 @@ export default function Menu({ lang }) {
   const t = translations[lang];
   const [activeCategory, setActiveCategory] = useState('all');
   const [lightboxImage, setLightboxImage] = useState(null);
+
+  const physicalMenuImages = [
+    `${import.meta.env.BASE_URL}images/menu-list/robadeli-menu-page-1.jpeg`,
+    `${import.meta.env.BASE_URL}images/menu-list/robadeli-menu-page-2.jpg`,
+    `${import.meta.env.BASE_URL}images/menu-list/robadeli-menu-page-3.jpg`
+  ];
+
+  const currentIdx = lightboxImage ? physicalMenuImages.indexOf(lightboxImage) : -1;
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    if (currentIdx !== -1) {
+      setLightboxImage(physicalMenuImages[(currentIdx + 1) % physicalMenuImages.length]);
+    }
+  };
+
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    if (currentIdx !== -1) {
+      setLightboxImage(physicalMenuImages[(currentIdx - 1 + physicalMenuImages.length) % physicalMenuImages.length]);
+    }
+  };
 
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
@@ -241,7 +317,7 @@ export default function Menu({ lang }) {
           <div className="menu-hero-overlay"></div>
         </div>
         <div className="container menu-hero-content">
-          <img src={`${import.meta.env.BASE_URL}images/robadeli-logo.png`} alt="Roba Deli" className="menu-hero-logo" />
+          <img src={`${import.meta.env.BASE_URL}images/logo/robadeli-logo.png`} alt="Roba Deli" className="menu-hero-logo" />
           <h1 className="menu-hero-title">{t.heroTitle}</h1>
           <p className="menu-hero-sub">{t.heroSub}</p>
         </div>
@@ -293,6 +369,8 @@ export default function Menu({ lang }) {
                     src={item.image}
                     alt={item.name[lang]}
                     loading="lazy"
+                    onClick={() => setLightboxImage(item.image)}
+                    style={{ cursor: 'pointer' }}
                   />
                   {item.tag && (
                     <span
@@ -337,7 +415,7 @@ export default function Menu({ lang }) {
             <span className="section-label">{lang === 'fi' ? 'Virallinen menu' : 'Official Menu'}</span>
             <h2 className="section-title">{lang === 'fi' ? 'Printtimenumme' : 'Our Printed Menu'}</h2>
             <div className="physical-menu-grid">
-              {[`${import.meta.env.BASE_URL}images/robadeli-menu-page-1.jpg`, `${import.meta.env.BASE_URL}images/robadeli-menu-page-2.jpg`, `${import.meta.env.BASE_URL}images/robadeli-menu-page-3.jpg`].map((src, idx) => (
+              {physicalMenuImages.map((src, idx) => (
                 <img
                   key={idx}
                   src={src}
@@ -363,6 +441,12 @@ export default function Menu({ lang }) {
                   onClick={() => setLightboxImage(null)}
                 >
                   <button className="lightbox-close" onClick={() => setLightboxImage(null)}>✕</button>
+                  {currentIdx !== -1 && (
+                    <>
+                      <button className="lightbox-prev" onClick={handlePrev}>&lsaquo;</button>
+                      <button className="lightbox-next" onClick={handleNext}>&rsaquo;</button>
+                    </>
+                  )}
                   <m.img
                     initial={{ scale: 0.8 }}
                     animate={{ scale: 1 }}
