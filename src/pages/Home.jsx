@@ -339,7 +339,7 @@ export default function Home({ lang }) {
                 transition={{ duration: 0.8, delay: 0.2 }}
               />
               <m.img 
-                src={`${import.meta.env.BASE_URL}images/fresh vegetable mix salad for_15756190 (2).png`} 
+                src={`${import.meta.env.BASE_URL}images/fresh-vegetable-salad.png`} 
                 alt="Fresh Vegetable Mix Salad" 
                 className="hero-img hero-img-top" 
                 initial={{ opacity: 0, scale: 0 }}
