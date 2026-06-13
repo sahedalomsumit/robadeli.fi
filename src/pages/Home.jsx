@@ -144,7 +144,7 @@ const offerItems = [
     id: 2,
     name: { fi: 'Loaded Nachos', en: 'Loaded Nachos' },
     desc: { fi: 'Kana tai Nauta.', en: 'Chicken or Beef.' },
-    image: `${import.meta.env.BASE_URL}images/offer/offer (1).jpeg`,
+    image: `${import.meta.env.BASE_URL}images/offer/offer-1.jpeg`,
     price: '7.50',
     tag: 'new',
   },
@@ -152,7 +152,7 @@ const offerItems = [
     id: 3,
     name: { fi: 'Pastrami Burger + Cola', en: 'Pastrami Burger + Cola' },
     desc: { fi: 'Herkullinen Pastrami Burger ja Cola.', en: 'Delicious Pastrami Burger with Cola.' },
-    image: `${import.meta.env.BASE_URL}images/offer/offer (2).jpeg`,
+    image: `${import.meta.env.BASE_URL}images/offer/offer-2.jpeg`,
     price: '17.90',
   },
 ];
@@ -220,7 +220,7 @@ export default function Home({ lang }) {
 
   const galleryBaseImages = [
     'restaurant-poster-1.jpg', 'restaurant-poster-2.jpg', 'restaurant-poster-3.jpg', 'restaurant-poster-4.jpg',
-    'restaurant-post-5.jpg'
+    'restaurant-poster-5.jpg'
   ];
   const uniqueGalleryImages = galleryBaseImages.map(img => `${import.meta.env.BASE_URL}images/${img}`);
 

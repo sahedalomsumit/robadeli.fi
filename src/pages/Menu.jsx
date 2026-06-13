@@ -213,7 +213,7 @@ const menuItems = [
     name: { fi: 'Loaded Nachos', en: 'Loaded Nachos' },
     desc: { fi: 'Kana tai Nauta.', en: 'Chicken or Beef.' },
     price: '7.50',
-    image: `${import.meta.env.BASE_URL}images/offer/offer (1).jpeg`,
+    image: `${import.meta.env.BASE_URL}images/offer/offer-1.jpeg`,
     tag: 'new',
   },
   {
@@ -222,7 +222,7 @@ const menuItems = [
     name: { fi: 'Pastrami Burger + Cola', en: 'Pastrami Burger + Cola' },
     desc: { fi: 'Herkullinen Pastrami Burger ja Cola.', en: 'Delicious Pastrami Burger with Cola.' },
     price: '17.90',
-    image: `${import.meta.env.BASE_URL}images/offer/offer (2).jpeg`,
+    image: `${import.meta.env.BASE_URL}images/offer/offer-2.jpeg`,
   },
   {
     id: 17,
@@ -230,7 +230,7 @@ const menuItems = [
     name: { fi: 'Large Philly Cheesesteak + Coca-Cola', en: 'Large Philly Cheesesteak + Coca-Cola' },
     desc: { fi: 'Iso Philly Cheesesteak ja Coca-Cola.', en: 'Large Philly Cheesesteak and Coca-Cola.' },
     price: '14.90',
-    image: `${import.meta.env.BASE_URL}images/offer/offer (3).jpeg`,
+    image: `${import.meta.env.BASE_URL}images/offer/offer-3.jpeg`,
   },
   {
     id: 18,
@@ -238,7 +238,7 @@ const menuItems = [
     name: { fi: 'Large Grilled Halloumi Sub + Coca-Cola', en: 'Large Grilled Halloumi Sub + Coca-Cola' },
     desc: { fi: 'Iso grillattu Halloumi Sub ja Coca-Cola.', en: 'Large Grilled Halloumi Sub and Coca-Cola.' },
     price: '13.90',
-    image: `${import.meta.env.BASE_URL}images/offer/offer (4).jpeg`,
+    image: `${import.meta.env.BASE_URL}images/offer/offer-4.jpeg`,
   },
   {
     id: 19,
@@ -246,7 +246,7 @@ const menuItems = [
     name: { fi: 'Large Sourdough Ultimate Italian + Coca-Cola', en: 'Large Sourdough Ultimate Italian + Coca-Cola' },
     desc: { fi: 'Iso hapanjuuri Ultimate Italian ja Coca-Cola.', en: 'Large Sourdough Ultimate Italian and Coca-Cola.' },
     price: '14.90',
-    image: `${import.meta.env.BASE_URL}images/offer/offer (5).jpeg`,
+    image: `${import.meta.env.BASE_URL}images/offer/offer-5.jpeg`,
   },
 ];
 
