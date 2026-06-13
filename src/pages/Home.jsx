@@ -331,16 +331,16 @@ export default function Home({ lang }) {
           <div className="hero-visual" aria-hidden="true">
             <div className="hero-img-stack">
               <m.img 
-                src={`${import.meta.env.BASE_URL}images/grilled-chicken-sub.png`} 
-                alt="Grilled Chicken Sub" 
+                src={`${import.meta.env.BASE_URL}images/italian-sub-sandwich.png`} 
+                alt="Italian Sub Sandwich" 
                 className="hero-img hero-img-main" 
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               />
               <m.img 
-                src={`${import.meta.env.BASE_URL}images/fresh-salad-bowl.jpg`} 
-                alt="Salad Bowl" 
+                src={`${import.meta.env.BASE_URL}images/fresh vegetable mix salad for_15756190 (2).png`} 
+                alt="Fresh Vegetable Mix Salad" 
                 className="hero-img hero-img-top" 
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
