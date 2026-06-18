@@ -160,34 +160,34 @@ const offerItems = [
 // Google Reviews data (static — real embed is below)
 const reviews = [
   {
-    name: 'Mikael K.',
+    name: 'Irena Vladimirov',
     rating: 5,
     date: { fi: '2 viikkoa sitten', en: '2 weeks ago' },
     text: {
-      fi: 'Paras sub Helsingissä! Ainekset ovat aina tuoreita ja henkilökunta on todella ystävällistä. Tulen takaisin ehdottomasti.',
-      en: 'Best sub in Helsinki! The ingredients are always fresh and the staff is super friendly. Definitely coming back.'
+      fi: 'Parasta täytettyä leipää mitä Suomessa olen koskaan syönyt. Paikka on juuri avattu, joten tunnelma vielä vähän keskeneräinen, mutta se korjaantuu kuulemma lähiviikkoina. Ruoka on taivaallista!!!',
+      en: 'The best filled bread I have ever eaten in Finland. The place has just opened, so the atmosphere is still a bit unfinished, but I hear it will be sorted out in the coming weeks. The food is heavenly!!!'
     },
-    avatar: 'M',
+    avatar: 'I',
   },
   {
-    name: 'Anna L.',
+    name: 'kari esso',
     rating: 5,
-    date: { fi: '1 kuukausi sitten', en: '1 month ago' },
+    date: { fi: '3 päivää sitten', en: '3 days ago' },
     text: {
-      fi: 'Smoothiet ovat maukkaita ja terveellisiä. Falafel-salaatti on nyt mielileikkiruokaani. Suosittelen lämpimästi!',
-      en: 'The smoothies are delicious and healthy. The falafel salad is now my go-to lunch. Highly recommend!'
+      fi: 'Sattuipa Robadeli kohdalle Iso Roobertinkadulla ja oli pakko jättää arvostelu. Upouusi paikka, joka on juuri avattu, mutta jo nyt todella vaikuttava. Ruoka on tuoretta ja tehty todella hyvin, etenkin juustoleipä oli aivan uskomaton. Yksi niistä paikoista, joiden ohi kävelee, pistäytyy sisään uteliaisuudesta ja päätyy miettimään sitä loppupäivän. Menen ehdottomasti uudestaan.',
+      en: 'Came across Robadeli on Iso Roobertinkatu and had to leave a review. Brand new place that’s only just opened, but already seriously impressive. The food is fresh and done really well the cheese sandwich in particular was unreal. One of those places you walk past, pop in out of curiosity, and end up thinking about for the rest of the day. Definitely going back.'
+    },
+    avatar: 'K',
+  },
+  {
+    name: 'Alex',
+    rating: 5,
+    date: { fi: '1 päivä sitten', en: '1 day ago' },
+    text: {
+      fi: 'Omistaja on aivan ihana. Subit vielä parempia. Jos haluat pastramia, älä mene muualle.',
+      en: "The owner is a sweetheart. The subs even better. Want pastrami, don't go elsewhere."
     },
     avatar: 'A',
-  },
-  {
-    name: 'Joonas P.',
-    rating: 5,
-    date: { fi: '3 viikkoa sitten', en: '3 weeks ago' },
-    text: {
-      fi: 'Loistava paikka! Ruoka on aina tuoretta ja tilaukset tehdään nopeasti. Hintataso on myös erittäin hyvä.',
-      en: 'Great spot! Food is always fresh and orders are done quickly. The price point is also excellent.'
-    },
-    avatar: 'J',
   },
 ];
 
