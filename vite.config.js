@@ -1,11 +1,12 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
-import VitePluginWebpAndPath from 'vite-plugin-webp-and-path'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
+import VitePluginWebpAndPath from "vite-plugin-webp-and-path";
 
 // https://vite.dev/config/
-export default defineConfig(({ command }) => ({
-  base: '/',
+export default defineConfig({
+  // GitHub project pages are served from a subpath: https://<user>.github.io/<repo>/
+  base: "/",
   plugins: [
     react(),
     ViteImageOptimizer({
@@ -14,9 +15,9 @@ export default defineConfig(({ command }) => ({
       },
     }),
     VitePluginWebpAndPath({
-      targetDir: './dist/',
-      imgExtensions: 'jpg,jpeg,png',
-      textExtensions: 'html,css,js',
+      targetDir: "./dist/",
+      imgExtensions: "jpg,jpeg,png",
+      textExtensions: "html,css,js",
       quality: 80,
     }),
   ],
@@ -28,17 +29,22 @@ export default defineConfig(({ command }) => ({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router') || id.includes('react-helmet-async')) {
-              return 'react-vendor';
+          if (id.includes("node_modules")) {
+            if (
+              id.includes("react") ||
+              id.includes("react-dom") ||
+              id.includes("react-router") ||
+              id.includes("react-helmet-async")
+            ) {
+              return "react-vendor";
             }
-            if (id.includes('framer-motion')) {
-              return 'framer-motion';
+            if (id.includes("framer-motion")) {
+              return "framer-motion";
             }
-            return 'vendor';
+            return "vendor";
           }
         },
       },
     },
   },
-}));
+});
