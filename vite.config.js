@@ -6,7 +6,7 @@ import VitePluginWebpAndPath from "vite-plugin-webp-and-path";
 // https://vite.dev/config/
 export default defineConfig({
   // GitHub project pages are served from a subpath: https://<user>.github.io/<repo>/
-  base: "/",
+  base: "./",
   plugins: [
     react(),
     ViteImageOptimizer({
