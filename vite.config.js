@@ -2,11 +2,12 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import VitePluginWebpAndPath from "vite-plugin-webp-and-path";
+import process from "node:process";
 
 // https://vite.dev/config/
 export default defineConfig({
   // GitHub project pages are served from a subpath: https://<user>.github.io/<repo>/
-  base: "./",
+  base: process.env.GITHUB_PAGES === "true" ? "/robadeli.fi/" : "/",
   plugins: [
     react(),
     ViteImageOptimizer({
